@@ -27,7 +27,11 @@ jobs:
         username: ${{ github.actor }}
         # Password or personal access token used to log against the Docker registry
         password: ${{ secrets.GITHUB_TOKEN }}
-    
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v4.0.1
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     - name: Build and push Docker images
       # You may pin to the exact commit or the version.
       # uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8
@@ -35,6 +39,6 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{date +%s}}
+        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         file: src/ABC.ApiGateway.Web/Dockerfile
