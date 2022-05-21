@@ -1,6 +1,7 @@
+using ABC.ApiGateway.Admin.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ABC.ApiGateway.Web.Controllers
+namespace ABC.ApiGateway.Admin.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -18,7 +19,7 @@ namespace ABC.ApiGateway.Web.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
+        [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
