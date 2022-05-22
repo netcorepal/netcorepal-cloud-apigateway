@@ -5,5 +5,7 @@
 ## 安装使用
 
 ```
-docker run --name apigateway -p 58080:80 -p 58443:443 -d ghcr.io/netcorepal/apigateway:master 
+docker pull ghcr.io/netcorepal/apigateway:master
+docker run --name apigateway -p 58080:80  -d ghcr.io/netcorepal/apigateway:master 
 ```
+访问地址： [http://localhost:58080](http://localhost:58080)
