@@ -7,16 +7,18 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/ABC.ApiGateway.Web/ABC.ApiGateway.Web.csproj", "src/ABC.ApiGateway.Web/"]
-RUN dotnet restore "src/ABC.ApiGateway.Web/ABC.ApiGateway.Web.csproj"
+COPY ["src/ApiGateway.Web/NetCorePal.ApiGateway.Web.csproj", "src/ApiGateway.Web/"]
+COPY ["src/ApiGateway.Core/NetCorePal.ApiGateway.Core.csproj", "src/ApiGateway.Core/"]
+COPY ["src/ApiGateway.Admin/NetCorePal.ApiGateway.Admin.csproj", "src/ApiGateway.Admin/"]
+RUN dotnet restore "src/ApiGateway.Web/NetCorePal.ApiGateway.Web.csproj"
 COPY . .
-WORKDIR "/src/src/ABC.ApiGateway.Web"
-RUN dotnet build "ABC.ApiGateway.Web.csproj" -c Release -o /app/build
+WORKDIR "/src/src/ApiGateway.Web"
+RUN dotnet build "NetCorePal.ApiGateway.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ABC.ApiGateway.Web.csproj" -c Release -o /app/publish
+RUN dotnet publish "NetCorePal.ApiGateway.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ABC.ApiGateway.Web.dll"]
+ENTRYPOINT ["dotnet", "NetCorePal.ApiGateway.Web.dll"]
