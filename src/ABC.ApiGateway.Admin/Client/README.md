@@ -1,1 +1,0 @@
-# ABC.ApiGateway.Admin.Client

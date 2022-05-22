@@ -1,0 +1,1 @@
+# NetCorePal.ApiGateway.Admin
