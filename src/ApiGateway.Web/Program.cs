@@ -25,11 +25,11 @@ else
     app.UseHttpsRedirection();
 }
 //app.UseAuthorization();
-app.UseBlazorFrameworkFiles();
-
+app.UseBlazorFrameworkFiles("/abc");
 app.UseStaticFiles();
-app.MapRazorPages();
+app.UseStaticFiles("/abc");
+app.UseRouting();
 app.MapControllers();
-app.MapFallbackToFile("index.html");
+app.MapFallbackToFile("/abc/{*path:nonfile}", "abc/index.html");
 //app.MapReverseProxy();
 app.Run();

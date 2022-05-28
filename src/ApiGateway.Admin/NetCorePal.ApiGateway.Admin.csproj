@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
+    <StaticWebAssetBasePath>abc</StaticWebAssetBasePath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,5 +14,4 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
-
 </Project>
